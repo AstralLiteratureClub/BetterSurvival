@@ -99,7 +99,7 @@ public class InvisibleGlowItemFrameCraftingRecipe implements Recipe, Listener {
 			if (!itemFrame.isValid()){
 				return;
 			}
-			if (itemFrame.isVisible()){
+			if (!itemFrame.isVisible()){
 				event.setCancelled(true);
 				event.getEntity().remove();
 				event.getEntity().getWorld().dropItemNaturally(event.getEntity().getLocation(), result);
@@ -113,7 +113,7 @@ public class InvisibleGlowItemFrameCraftingRecipe implements Recipe, Listener {
 			if (!itemFrame.isValid()){
 				return;
 			}
-			if (itemFrame.isVisible()){
+			if (!itemFrame.isVisible()){
 				event.setCancelled(true);
 				event.getEntity().remove();
 				event.getEntity().getWorld().dropItemNaturally(event.getEntity().getLocation(), result);
