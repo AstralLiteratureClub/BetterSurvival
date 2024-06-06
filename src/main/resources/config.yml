@@ -1,0 +1,114 @@
+join-messages:
+  - "<green>%player% joined the game"
+  - "<green>%player% popped out of nowhere"
+  - "<green>%player% has returned from their soul mission"
+  - "<green>%player% didn't end themself while offline"
+  - "<green>%player% has come to save the world"
+  - "<green>%player% has come to annoy everyone"
+  - "<green>%player% got their popcorn"
+  - "<green>%player% wants to eat some steak"
+  - "<green>%player% is ready to die"
+  - "<green>%player% decided to like frogs too much"
+  - "<green>%player% loves somebody probably!"
+  - "<green>%player% thinks that minecraft is boring and yet they play it"
+  - "<green>%player% kissed a grandma"
+  - "<green>%player% kissed a grandpa"
+  - "<green>%player% licked a stone in the ground"
+  - "<green>%player% eyed a cow in a way"
+  - "<green>%player% drank some battery acid"
+  - "<green>%player% came back from their mission. They had to save 50 cows, 10 chickens, 13 donkeys, 482 bees, 32 elephants, 93 pigs, 273 blue whales, 69 humans, 72 boats, 2321 ants, 12 dogs, 203 cats from a burning building"
+  - "<green>%player% has given some thought to living their best life they can"
+  - "<green>%player% likes likes somebody"
+  - "<green>%player% is now married"
+  - "<green>%player% is now divorced"
+  - "<green>%player% is thinking about boys"
+  - "<green>%player% is thinking about girls"
+  - "<green>%player% is thinking about how dogs and humans are compatible, but not in a bad way"
+  - "<green>%player% has come to steal some items"
+  - "<green>%player% has come to give back items"
+  - "<green>%player% likes licking rocks"
+  - "<green>%player% likes boys"
+  - "<green>%player% IS READY TO JUMP OFF A CLIFF"
+  - "<green>%player% is ready to trade pokemon cards with anyone"
+  - "<green>%player% is here to manage the server"
+  - "<green>%player% dislikes cats"
+  - "<green>%player% has issues with someone online"
+  - "<green>%player% eats rocks"
+
+quit-messages:
+ - "<red>%player% left the game"
+ - "<red>%player% left to get popcorn"
+ - "<red>%player% rage quit"
+ - "<red>%player% wanted the easy way out"
+ - "<red>%player% got psychedelic and left"
+ - "<red>%player% didn't want to play anymore"
+ - "<red>%player% didn't like the company they had"
+ - "<red>%player% got a frog fetish and left the game"
+ - "<red>%player% left to eat some cream"
+ - "<red>%player% didn't enjoy playing"
+ - "<red>%player% decided to get a life"
+ - "<red>%player% left to kiss a grandma"
+ - "<red>%player% left to kiss a grandpa"
+ - "<red>%player% thinks that the next person to leave is dumb"
+ - "<red>%player% is eating now"
+ - "<red>%player% doesn't realize how large the world is"
+ - "<red>%player% doesn't want to be here"
+ - "<red>%player% loves herself"
+ - "<red>%player% has real life issues and went to fix them"
+ - "<red>%player% had to go shoot something"
+ - "<red>%player% had to check something"
+ - "<red>%player% liked rocks too much and left"
+ - "<red>%player% inherited their grandpa's grandma"
+ - "<red>%player% had a stroke"
+ - "<red>%player% refused to play anymore"
+ - "<red>%player% left to survive their parents wrath"
+ - "<red>%player% has estimated 10 seconds to come back"
+ - "<red>%player% had to go reassure their mom to let them play 5 more minutes"
+ - "<red>%player% had to go decide what to wear for tomorrow"
+ - "<red>%player% had to go lose pennies"
+ - "<red>%player% tried to copy superman"
+ - "<red>%player% left to ask a favor"
+ - "<red>%player% quit"
+ - "<red>%player% had to go decide which wedding ring to buy"
+ - "<red>%player% suppress the media"
+ - "<red>%player% had to clear their mind"
+ - "<red>%player% wastes diamonds on diamond hoes"
+ - "<red>%player% wasted"
+ - "<red>%player% clung on to a cow"
+ - "<red>%player% has decided to go marry somebody"
+ - "<red>%player% has decided to go marry a random person from the streets"
+ - "<red>%player% has decided to go divorced their wife"
+ - "<red>%player% has decided to go divorced their husband"
+ - "<red>%player% froze to death"
+ - "<red>%player% is trying to sustain their life"
+ - "<red>%player% left to wander around"
+ - "<red>%player% needed to feed the cats"
+
+links:
+  - "https://"
+  - "http://"
+
+chat-format: "<white>%player%<gray>:<white> %message%"
+chat-item-format: "<yellow>%amount%x<white> %displayname%"
+chat-item-air-format: "<yellow><hover:show_text:'<!italic><green>Nothing to see here!'>%player%'s hand"
+
+sleep:
+  1: 1
+  2: 1
+  3: 1
+  4: 2
+  5: 2
+  6: 3
+  7: 3
+  8: 3
+  9: 3
+  10: 3
+  11: 3
+  12: 4
+  13: 4
+  14: 5
+  15: 5
+  16: 6
+  17: 6
+  18: 7
+  19: 7
