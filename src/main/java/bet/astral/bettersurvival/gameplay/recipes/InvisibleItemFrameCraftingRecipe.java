@@ -11,7 +11,11 @@ import org.bukkit.entity.ItemFrame;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByBlockEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.hanging.HangingBreakByEntityEvent;
+import org.bukkit.event.hanging.HangingBreakEvent;
 import org.bukkit.event.hanging.HangingPlaceEvent;
 import org.bukkit.inventory.ItemRarity;
 import org.bukkit.inventory.ItemStack;
@@ -90,15 +94,29 @@ public class InvisibleItemFrameCraftingRecipe implements Recipe, Listener {
 			itemFrame.setVisible(false);
 		}
 	}
-	@EventHandler(ignoreCancelled = true, priority = EventPriority.HIGHEST)
-	public void onDestroy(@NotNull EntityDamageEvent event){
-		if (event.getEntity() instanceof GlowItemFrame itemFrame){
-			if (itemFrame.isGlowing()){
+	@EventHandler(ignoreCancelled = true)
+	public void onDestroy(@NotNull HangingBreakEvent event){
+		if (event.getEntity() instanceof ItemFrame itemFrame && !(event.getEntity() instanceof GlowItemFrame)){
+			if (!itemFrame.isValid()){
+				return;
+			}
+			if (itemFrame.isVisible()){
 				event.setCancelled(true);
 				event.getEntity().remove();
-				event.getEntity().getWorld().dropItemNaturally(event.getEntity().getLocation(), result, (item)->{
-					item.setGlowing(true);
-				});
+				event.getEntity().getWorld().dropItemNaturally(event.getEntity().getLocation(), result);
+			}
+		}
+	}
+	@EventHandler(ignoreCancelled = true)
+	public void onDestroy(@NotNull HangingBreakByEntityEvent event){
+		if (event.getEntity() instanceof ItemFrame itemFrame && !(event.getEntity() instanceof GlowItemFrame)){
+			if (!itemFrame.isValid()){
+				return;
+			}
+			if (itemFrame.isVisible()){
+				event.setCancelled(true);
+				event.getEntity().remove();
+				event.getEntity().getWorld().dropItemNaturally(event.getEntity().getLocation(), result);
 			}
 		}
 	}
