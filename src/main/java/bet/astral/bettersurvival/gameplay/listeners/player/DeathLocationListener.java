@@ -1,4 +1,4 @@
-package bet.astral.bettersurvival.gameplay.listeners;
+package bet.astral.bettersurvival.gameplay.listeners.player;
 
 import bet.astral.bettersurvival.BetterSurvival;
 import net.kyori.adventure.text.Component;
@@ -23,6 +23,6 @@ public class DeathLocationListener implements Listener {
 				.append(Component.text((int) location.getX()).color(NamedTextColor.WHITE)).append(Component.text(", y").color(NamedTextColor.GRAY))
 				.append(Component.text((int) location.getY()).color(NamedTextColor.WHITE)).append(Component.text(", z").color(NamedTextColor.GRAY))
 				.append(Component.text((int) location.getX()).color(NamedTextColor.WHITE)).append(Component.text(", ").color(NamedTextColor.GRAY)).appendSpace()
-				.append(Component.text(location.getWorld().getName()).color(NamedTextColor.YELLOW)));
+				.append(Component.text(location.getWorld().getEnvironment().name()).color(NamedTextColor.YELLOW)));
 	}
 }

@@ -1,4 +1,4 @@
-package bet.astral.bettersurvival.gameplay.listeners;
+package bet.astral.bettersurvival.gameplay.listeners.world;
 
 import bet.astral.bettersurvival.BetterSurvival;
 import org.bukkit.block.*;
@@ -22,7 +22,7 @@ public class ClickThroughItemFramesListeners implements Listener {
 		}
 		Entity entity = event.getRightClicked();
 		if (entity instanceof ItemFrame itemFrame){
-			if (itemFrame.isInvisible()){
+			if (!itemFrame.isVisible()){
 				BlockFace blockFace = itemFrame.getAttachedFace();
 				BlockFace opposite = blockFace.getOppositeFace();
 				Block block = itemFrame.getLocation().getBlock().getRelative(opposite);

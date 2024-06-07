@@ -1,4 +1,4 @@
-package bet.astral.bettersurvival.gameplay.listeners;
+package bet.astral.bettersurvival.gameplay.listeners.player;
 
 import bet.astral.bettersurvival.BetterSurvival;
 import bet.astral.bettersurvival.gameplay.recipes.Recipe;

@@ -1,4 +1,4 @@
-package bet.astral.bettersurvival.gameplay.listeners;
+package bet.astral.bettersurvival.gameplay.listeners.world;
 
 import bet.astral.bettersurvival.BetterSurvival;
 import io.papermc.paper.event.player.PlayerDeepSleepEvent;

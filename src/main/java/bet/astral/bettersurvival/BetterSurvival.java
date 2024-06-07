@@ -1,10 +1,17 @@
 package bet.astral.bettersurvival;
 
+import bet.astral.bettersurvival.commands.CommandHat;
 import bet.astral.bettersurvival.format.ChatFormatListener;
 import bet.astral.bettersurvival.format.ConnectionFormatListener;
 import bet.astral.bettersurvival.format.ItemDisplayListener;
 import bet.astral.bettersurvival.format.LinkFixListener;
-import bet.astral.bettersurvival.gameplay.listeners.*;
+import bet.astral.bettersurvival.gameplay.listeners.player.ColoredAnvilNameListener;
+import bet.astral.bettersurvival.gameplay.listeners.player.DeathLocationListener;
+import bet.astral.bettersurvival.gameplay.listeners.player.RecipeListeners;
+import bet.astral.bettersurvival.gameplay.listeners.world.ClickThroughItemFramesListeners;
+import bet.astral.bettersurvival.gameplay.listeners.world.PlayerHeadDropsListener;
+import bet.astral.bettersurvival.gameplay.listeners.world.SleepSkipListener;
+import bet.astral.bettersurvival.gameplay.listeners.world.SoulSandValleySkeletonHorseSpawnListener;
 import bet.astral.bettersurvival.gameplay.recipes.InvisibleGlowItemFrameCraftingRecipe;
 import bet.astral.bettersurvival.gameplay.recipes.InvisibleItemFrameCraftingRecipe;
 import bet.astral.bettersurvival.gameplay.recipes.Recipe;
@@ -67,10 +74,12 @@ public final class BetterSurvival extends JavaPlugin {
         register(new PlayerHeadDropsListener(this));
         register(new RecipeListeners(this));
         register(new ClickThroughItemFramesListeners(this));
+        register(new SoulSandValleySkeletonHorseSpawnListener(this));
 
         recipe(new InvisibleItemFrameCraftingRecipe(this).register());
         recipe(new InvisibleGlowItemFrameCraftingRecipe(this).register());
 
+        new CommandHat().register(this);
         getLogger().info("Enabled better survival");
     }
 

@@ -1,4 +1,4 @@
-package bet.astral.bettersurvival.gameplay.listeners;
+package bet.astral.bettersurvival.gameplay.listeners.world;
 
 import bet.astral.bettersurvival.BetterSurvival;
 import com.destroystokyo.paper.profile.PlayerProfile;
@@ -33,7 +33,7 @@ public class PlayerHeadDropsListener implements Listener {
 		EntityDamageEvent entityDamageEvent = event.getPlayer().getLastDamageCause();
 		if (entityDamageEvent instanceof EntityDamageByEntityEvent entityDamageByEntityEvent){
 			Entity entity = entityDamageByEntityEvent.getDamager();
-			if (event instanceof Player attacker) {
+			if (entity instanceof Player attacker) {
 				Player victim = event.getPlayer();
 				ItemStack head = new ItemStack(Material.PLAYER_HEAD);
 				SkullMeta skullMeta = (SkullMeta) head.getItemMeta();

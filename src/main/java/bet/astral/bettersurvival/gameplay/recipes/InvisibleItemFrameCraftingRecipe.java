@@ -9,11 +9,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.entity.GlowItemFrame;
 import org.bukkit.entity.ItemFrame;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDamageByBlockEvent;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.hanging.HangingBreakByEntityEvent;
 import org.bukkit.event.hanging.HangingBreakEvent;
 import org.bukkit.event.hanging.HangingPlaceEvent;
@@ -103,7 +99,7 @@ public class InvisibleItemFrameCraftingRecipe implements Recipe, Listener {
 			if (!itemFrame.isVisible()){
 				event.setCancelled(true);
 				event.getEntity().remove();
-				event.getEntity().getWorld().dropItemNaturally(event.getEntity().getLocation(), result);
+				drop(event.getEntity().getLocation(), result);
 			}
 		}
 	}
@@ -116,7 +112,7 @@ public class InvisibleItemFrameCraftingRecipe implements Recipe, Listener {
 			if (!itemFrame.isVisible()){
 				event.setCancelled(true);
 				event.getEntity().remove();
-				event.getEntity().getWorld().dropItemNaturally(event.getEntity().getLocation(), result);
+				drop(event.getEntity().getLocation(), result);
 			}
 		}
 	}
