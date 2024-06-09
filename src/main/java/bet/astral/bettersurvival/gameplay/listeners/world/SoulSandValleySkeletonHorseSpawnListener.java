@@ -2,6 +2,7 @@ package bet.astral.bettersurvival.gameplay.listeners.world;
 
 import bet.astral.bettersurvival.BetterSurvival;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Biome;
 import org.bukkit.entity.EntityType;
@@ -11,6 +12,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
+import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
@@ -40,6 +42,7 @@ public class SoulSandValleySkeletonHorseSpawnListener implements Listener {
 					SkeletonHorse skeletonHorse = (SkeletonHorse) world.spawnEntity(location, EntityType.SKELETON_HORSE, CreatureSpawnEvent.SpawnReason.MOUNT);
 					skeletonHorse.setHealth(random.nextInt(6, 15));
 					skeletonHorse.setJumpStrength(random.nextDouble(1, 3.5));
+					skeletonHorse.getInventory().setSaddle(new ItemStack(Material.SADDLE));
 					skeletonHorse.addPassenger(skeleton);
 				}
 			}

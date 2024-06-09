@@ -35,7 +35,7 @@ public class InvisibleGlowItemFrameCraftingRecipe implements Recipe, Listener {
 		this.result.editMeta(meta->{
 			meta.setRarity(ItemRarity.EPIC);
 			meta.setEnchantmentGlintOverride(true);
-			meta.setCustomModelData(1500);
+			meta.setCustomModelData(10002);
 			meta.displayName(Component.text("Invisible Glow Item Frame").color(ItemRarity.EPIC.color()).decoration(TextDecoration.ITALIC, false));
 			meta.getPersistentDataContainer().set(key, PersistentDataType.BOOLEAN, true);
 		});

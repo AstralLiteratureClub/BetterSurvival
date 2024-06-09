@@ -15,6 +15,7 @@ public interface Recipe {
 	}
 
 	default void drop(@NotNull Location location, @NotNull ItemStack itemStack){
-		location.getWorld().dropItemNaturally(location.clone().add(0.5, 0.5, -0.5), itemStack);
+		location = location.toCenterLocation();
+		location.getWorld().dropItemNaturally(location, itemStack);
 	}
 }

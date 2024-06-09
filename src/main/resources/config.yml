@@ -1,3 +1,5 @@
+always-replace-config: true
+
 join-messages:
   - "<green>%player% joined the game"
   - "<green>%player% popped out of nowhere"
@@ -34,6 +36,17 @@ join-messages:
   - "<green>%player% dislikes cats"
   - "<green>%player% has issues with someone online"
   - "<green>%player% eats rocks"
+  - "<green>%Player% has a AI girlfriend"
+  - "<green>%player% has a AI boyfriend"
+  - "<yellow>%player% got a red join message!"
+  - "<dark_red>%player% <rainbow>got a rainbow join message!"
+  - "<green>%player% fucked"
+  - "<green>%player% likes star wars"
+  - "<green>%player% drinks red bull energy drink"
+  - "<green>%player% eats satsumas"
+  - "<green>%player% is THE walter white"
+  - "<green>%player% can't sit still for 10 minutes"
+  - "<green>%player% is going to complain about something soon"
 
 quit-messages:
  - "<red>%player% left the game"
@@ -83,6 +96,8 @@ quit-messages:
  - "<red>%player% is trying to sustain their life"
  - "<red>%player% left to wander around"
  - "<red>%player% needed to feed the cats"
+ - "<red>%player% is gonna close their AI girlfriend's servers"
+ - "<red>%player% is gonna close their AI boyfriend's servers"
 
 links:
   - "https://"
