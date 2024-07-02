@@ -36,10 +36,12 @@ join-messages:
   - "<green>%player% dislikes cats"
   - "<green>%player% has issues with someone online"
   - "<green>%player% eats rocks"
-  - "<green>%Player% has a AI girlfriend"
+  - "<green>%player% has a AI girlfriend"
   - "<green>%player% has a AI boyfriend"
-  - "<yellow>%player% got a red join message!"
-  - "<dark_red>%player% <rainbow>got a rainbow join message!"
+  - "<red>%player% got a red join message!"
+  - "<yellow>%player% got a yellow join message!"
+  - "<rainbow>%player% got a rainbow join message!"
+  - "<rainbow:3>%player% got a rainbow join message!"
   - "<green>%player% fucked"
   - "<green>%player% likes star wars"
   - "<green>%player% drinks red bull energy drink"
@@ -47,6 +49,38 @@ join-messages:
   - "<green>%player% is THE walter white"
   - "<green>%player% can't sit still for 10 minutes"
   - "<green>%player% is going to complain about something soon"
+  - "<green>%player% is about to bust"
+  - "<green>%player% is about to jump off a cliff"
+  - "<green>%player% closed their AI girlfriends servers"
+  - "<green>%player% closed their AI boyfriends servers"
+  - "<green>%player% is into some bunny action (feeding them)"
+  - "<green>%player% likes bunnies"
+  - "<green>%player% has a house underground"
+  - "<green>%player% has a super good looking boyfriend"
+  - "<green>%player% has a super good looking girlfriend"
+  - "<green>%player% has a chicken named cow"
+  - "<green>%player% is a chicken"
+  - "<green>%player% is a <rainbow>rainbow sexual"
+  - "<green>%player% is going to kill somebody"
+  - "<green>%player% is going to have a bad acne"
+  - "<green>%player% has a bad acne"
+  - "<green>%player% ate a bar of chocolate"
+  - "<green>%player% put their di- I mean flour in a locked barrel"
+  - "<green>%player% is a girl"
+  - "<green>%player% is a boy"
+  - "<green>%player% likes placenta pills too much"
+  - "<green>%player% is going to eat some eat placenta pills"
+  - "<green>%player% is going to kill themselves"
+  - "<green>%player% is going to die alone"
+  - "<green>%player%'s mom is being drained by the plumber"
+  - "<green>%player%'s dad is the plumber"
+  - "<green><bold>+ <green>%player%"
+  - "<green>%player% is the guardian of the galaxy"
+  - "<green>%player% is into pussy cats"
+  - "<green>%player% has bought an annoying cock to the farm which keeps on yelling fap fap."
+  - "<green>%player% makes the fap fap sounds"
+  - "<green>%player% is dumb."
+  - "<#FFC0CB>%player% likes the color pink"
 
 quit-messages:
  - "<red>%player% left the game"
@@ -98,6 +132,8 @@ quit-messages:
  - "<red>%player% needed to feed the cats"
  - "<red>%player% is gonna close their AI girlfriend's servers"
  - "<red>%player% is gonna close their AI boyfriend's servers"
+ - "<red>%player% broke the locked barrel and no longer has a di- nvm"
+ - "<red>%player% just left to get ice cream"
 
 links:
   - "https://"
@@ -111,19 +147,19 @@ sleep:
   1: 1
   2: 1
   3: 1
-  4: 2
+  4: 1
   5: 2
-  6: 3
-  7: 3
-  8: 3
-  9: 3
-  10: 3
-  11: 3
-  12: 4
-  13: 4
-  14: 5
-  15: 5
-  16: 6
-  17: 6
-  18: 7
-  19: 7
+  6: 2
+  7: 2
+  8: 2
+  9: 2
+  10: 2
+  11: 2
+  12: 2
+  13: 3
+  14: 3
+  15: 3
+  16: 3
+  17: 3
+  18: 3
+  19: 3

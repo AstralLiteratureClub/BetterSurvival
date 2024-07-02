@@ -21,16 +21,18 @@ public class SpawnBabyOnDeathListener implements Listener {
 	@EventHandler
 	public void onDeath(PlayerDeathEvent event){
 		double chance = survival.random.nextDouble();
-		if (chance>0.999){
+		if (chance>0.9){
 			Location location = event.getPlayer().getLocation();
 
 			location.getWorld().spawnEntity(location, EntityType.VILLAGER, CreatureSpawnEvent.SpawnReason.BREEDING, (entity -> {
 				Villager villager = (Villager) entity;
 				Player player = event.getPlayer();
 				villager.setBaby();
+				villager.setAgeLock(true);
+				villager.setRemoveWhenFarAway(false);
 				villager.setProfession(Villager.Profession.values()[survival.random.nextInt(Villager.Profession.values().length)]);
 				villager.setVillagerType(Villager.Type.values()[survival.random.nextInt(Villager.Type.values().length)]);
-				villager.customName(player.name().color(NamedTextColor.GOLD).append(Component.text("'s baby").color(NamedTextColor.WHITE)));
+				villager.customName(player.name().color(NamedTextColor.GOLD).append(Component.text("'s baby").color(NamedTextColor.GOLD)));
 			}));
 		}
 	}

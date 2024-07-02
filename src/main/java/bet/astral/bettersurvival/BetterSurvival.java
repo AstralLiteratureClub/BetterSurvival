@@ -1,29 +1,26 @@
 package bet.astral.bettersurvival;
 
-import bet.astral.bettersurvival.commands.CommandDay;
+import bet.astral.bettersurvival.commands.AdminPlayerLocationLookupCommand;
+import bet.astral.bettersurvival.commands.ArmorStandEditCommand;
 import bet.astral.bettersurvival.commands.CommandHat;
-import bet.astral.bettersurvival.format.AllItemDisplayListener;
+import bet.astral.bettersurvival.commands.CommandMessage;
 import bet.astral.bettersurvival.format.ChatFormatListener;
+import bet.astral.bettersurvival.format.ChatStylingListener;
 import bet.astral.bettersurvival.format.ConnectionFormatListener;
-import bet.astral.bettersurvival.format.ItemDisplayListener;
-import bet.astral.bettersurvival.format.LinkFixListener;
 import bet.astral.bettersurvival.gameplay.listeners.player.ColoredAnvilNameListener;
 import bet.astral.bettersurvival.gameplay.listeners.player.DeathLocationListener;
 import bet.astral.bettersurvival.gameplay.listeners.player.RecipeListeners;
-import bet.astral.bettersurvival.gameplay.listeners.world.ArmorStandSwitchTypeListener;
-import bet.astral.bettersurvival.gameplay.listeners.world.ClickThroughItemFramesListeners;
-import bet.astral.bettersurvival.gameplay.listeners.world.PlayerHeadDropsListener;
-import bet.astral.bettersurvival.gameplay.listeners.world.SleepSkipListener;
-import bet.astral.bettersurvival.gameplay.listeners.world.SoulSandValleySkeletonHorseSpawnListener;
-import bet.astral.bettersurvival.gameplay.listeners.world.SpawnBabyOnDeathListener;
-import bet.astral.bettersurvival.gameplay.recipes.InvisibleGlowItemFrameCraftingRecipe;
-import bet.astral.bettersurvival.gameplay.recipes.InvisibleItemFrameCraftingRecipe;
-import bet.astral.bettersurvival.gameplay.recipes.Recipe;
+import bet.astral.bettersurvival.gameplay.listeners.world.*;
+import bet.astral.bettersurvival.gameplay.recipes.*;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.NamespacedKey;
+import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.incendo.cloud.SenderMapper;
+import org.incendo.cloud.execution.ExecutionCoordinator;
+import org.incendo.cloud.paper.PaperCommandManager;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
@@ -32,20 +29,27 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public final class BetterSurvival extends JavaPlugin {
+    private static BetterSurvival instance;
     public MiniMessage miniMessage = MiniMessage.miniMessage();
     public final DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
     public final List<String> joins = new LinkedList<>();
     public final List<String> quits = new LinkedList<>();
     public final Set<String> links = new HashSet<>();
     public final Map<Integer, Integer> sleepRequirements = new HashMap<>();
+    public final List<NamespacedKey> removedRecipes = new LinkedList<>();
     public final Set<Recipe> recipes = new HashSet<>();
     public String chatFormat;
     public final Random random = new Random();
     public String itemFormat;
     public String itemFormatEmpty;
 
-	@Override
+    public static BetterSurvival instance() {
+        return instance;
+    }
+
+    @Override
     public void onEnable() {
+        instance = this;
         saveDefaultConfig();
         reloadConfig();
         FileConfiguration configuration = getConfig();
@@ -75,11 +79,12 @@ public final class BetterSurvival extends JavaPlugin {
             sleepRequirements.put(i, req);
         }
 
+        removedRecipes.add(key("lockable_barrel"));
+        removedRecipes.add(key("lockable_chest"));
+
         register(new ChatFormatListener(this));
         register(new ConnectionFormatListener(this));
-        register(new ItemDisplayListener(this));
-        register(new AllItemDisplayListener(this));
-        register(new LinkFixListener(this));
+        register(new ChatStylingListener(this));
 
         register(new ColoredAnvilNameListener(this));
         register(new DeathLocationListener(this));
@@ -89,14 +94,37 @@ public final class BetterSurvival extends JavaPlugin {
         register(new ClickThroughItemFramesListeners(this));
         register(new SoulSandValleySkeletonHorseSpawnListener(this));
         register(new SpawnBabyOnDeathListener(this));
-        register(new ArmorStandSwitchTypeListener(this));
-        register(new ArmorStandSwitchTypeListener(this));
+        register(new ChickenVillagerListener(this));
+        register(new PlayerMeatListener(this));
+        register(new MultishotCrossbowInvulnerabilityRemoverListener(this));
 
-        recipe(new InvisibleItemFrameCraftingRecipe(this).register());
-        recipe(new InvisibleGlowItemFrameCraftingRecipe(this).register());
+        register(new GlowBerryActualGlowListener());
 
-        new CommandHat().register(this);
-        new CommandDay().register(this);
+        register(new JukeboxBarrelListener(this));
+        register(new RaiderBadOmenReplacementListener(this));
+
+        recipe(Recipe.BUNDLE_CR.register());
+        recipe(Recipe.INVISIBLE_GLOWING_ITEM_FRAME.register());
+        recipe(Recipe.INVISIBLE_ITEM_FRAME.register());
+        recipe(Recipe.LOCKABLE_BARREL.register());
+        recipe(Recipe.KEYPAD.register());
+        recipe(Recipe.LEATHER.register());
+
+        final PaperCommandManager<CommandSender> commandManager = new PaperCommandManager<>(
+                this,
+                ExecutionCoordinator.asyncCoordinator(),
+                SenderMapper.identity()
+        );
+        commandManager.registerBrigadier();
+        commandManager.registerAsynchronousCompletions();
+
+        new CommandHat(this, commandManager).register();
+        new CommandMessage(this, commandManager).register();
+        new ArmorStandEditCommand(this, commandManager).register();
+//        new AdminLockChestBreakCommand(this, commandManager).register();
+        new AdminPlayerLocationLookupCommand(this, commandManager).register();
+
+
         getLogger().info("Enabled better survival");
     }
 

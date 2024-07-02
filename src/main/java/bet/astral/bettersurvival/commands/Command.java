@@ -1,20 +1,16 @@
 package bet.astral.bettersurvival.commands;
 
-import org.bukkit.plugin.java.JavaPlugin;
-import org.jetbrains.annotations.NotNull;
+import bet.astral.bettersurvival.BetterSurvival;
+import org.incendo.cloud.paper.PaperCommandManager;
 
-import java.util.List;
-
-public abstract class Command extends org.bukkit.command.Command {
-	public Command(@NotNull String name) {
-		super(name);
+public abstract class Command<C> {
+	protected final BetterSurvival survival;
+	protected final PaperCommandManager<C> commandManager;
+	public Command(BetterSurvival survival, PaperCommandManager<C> commandManager) {
+		this.survival = survival;
+		this.commandManager = commandManager;
 	}
 
-	public Command(@NotNull String name, @NotNull String description, @NotNull String usageMessage, @NotNull List<String> aliases) {
-		super(name, description, usageMessage, aliases);
-	}
+	public abstract void register();
 
-	public void register(JavaPlugin javaPlugin){
-		javaPlugin.getServer().getCommandMap().registerAll(javaPlugin.getName(), List.of(this));
-	}
 }

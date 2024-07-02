@@ -20,6 +20,7 @@ public class RecipeListeners implements Listener {
 
 	@EventHandler
 	public void onJoin(PlayerJoinEvent event) {
+		event.getPlayer().undiscoverRecipes(survival.removedRecipes);
 		for (Recipe recipe : survival.recipes) {
 			if (recipe == null || !recipe.alwaysGrant()){
 				continue;

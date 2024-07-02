@@ -1,14 +1,15 @@
-package bet.astral.bettersurvival.gameplay.recipes;
+package bet.astral.bettersurvival.gameplay.recipes.crafting;
 
 import bet.astral.bettersurvival.BetterSurvival;
+import bet.astral.bettersurvival.gameplay.recipes.Recipe;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.GlowItemFrame;
-import org.bukkit.entity.ItemFrame;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.hanging.HangingBreakByEntityEvent;
 import org.bukkit.event.hanging.HangingBreakEvent;
@@ -20,23 +21,22 @@ import org.bukkit.inventory.recipe.CraftingBookCategory;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 
-public class InvisibleItemFrameCraftingRecipe implements Recipe, Listener {
+public class InvisibleGlowItemFrameCraftingRecipe implements Recipe, Listener {
 	private final NamespacedKey key;
 	private final String group;
 	private final CraftingBookCategory craftingBookCategory;
 	private final ItemStack result;
 
-	public InvisibleItemFrameCraftingRecipe(BetterSurvival survival) {
+	public InvisibleGlowItemFrameCraftingRecipe() {
 		this.result = new ItemStack(Material.ITEM_FRAME);
-		this.key = survival.key("invisible_item_frame");
-		this.group = "invisible_item_frame";
+		this.key = BetterSurvival.instance().key("invisible_glow_item_frame");
+		this.group = "invisible_glow_item_frame";
 		this.craftingBookCategory = CraftingBookCategory.MISC;
-
 		this.result.editMeta(meta->{
 			meta.setRarity(ItemRarity.EPIC);
 			meta.setEnchantmentGlintOverride(true);
-			meta.setCustomModelData(10003);
-			meta.displayName(Component.text("Invisible Item Frame").color(ItemRarity.EPIC.color()).decoration(TextDecoration.ITALIC, false));
+			meta.setCustomModelData(10002);
+			meta.displayName(Component.text("Invisible Glow Item Frame").color(ItemRarity.UNCOMMON.color()).decoration(TextDecoration.ITALIC, false));
 			meta.getPersistentDataContainer().set(key, PersistentDataType.BOOLEAN, true);
 		});
 	}
@@ -60,11 +60,10 @@ public class InvisibleItemFrameCraftingRecipe implements Recipe, Listener {
 		ShapelessRecipe recipe = new ShapelessRecipe(key, result);
 		recipe.setGroup(group);
 		recipe.setCategory(craftingBookCategory);
-		recipe.addIngredient(Material.ITEM_FRAME);
+		recipe.addIngredient(Material.GLOW_ITEM_FRAME);
 		recipe.addIngredient(Material.DIAMOND);
 		return recipe;
 	}
-
 
 	@Override
 	public void unregister() {
@@ -86,13 +85,13 @@ public class InvisibleItemFrameCraftingRecipe implements Recipe, Listener {
 		if (!isResultType(event.getItemStack())){
 			return;
 		}
-		if (event.getEntity() instanceof ItemFrame itemFrame){
-			itemFrame.setVisible(false);
+		if (event.getEntity() instanceof GlowItemFrame glowItemFrame){
+			glowItemFrame.setVisible(false);
 		}
 	}
-	@EventHandler(ignoreCancelled = true)
+	@EventHandler(ignoreCancelled = true, priority = EventPriority.HIGHEST)
 	public void onDestroy(@NotNull HangingBreakEvent event){
-		if (event.getEntity() instanceof ItemFrame itemFrame && !(event.getEntity() instanceof GlowItemFrame)){
+		if (event.getEntity() instanceof GlowItemFrame itemFrame){
 			if (!itemFrame.isValid()){
 				return;
 			}
@@ -101,11 +100,12 @@ public class InvisibleItemFrameCraftingRecipe implements Recipe, Listener {
 				event.getEntity().remove();
 				drop(event.getEntity().getLocation(), result);
 			}
+
 		}
 	}
-	@EventHandler(ignoreCancelled = true)
+	@EventHandler(ignoreCancelled = true, priority = EventPriority.HIGHEST)
 	public void onDestroy(@NotNull HangingBreakByEntityEvent event){
-		if (event.getEntity() instanceof ItemFrame itemFrame && !(event.getEntity() instanceof GlowItemFrame)){
+		if (event.getEntity() instanceof GlowItemFrame itemFrame){
 			if (!itemFrame.isValid()){
 				return;
 			}

@@ -24,22 +24,20 @@ public class ClickThroughItemFramesListeners implements Listener {
 			return;
 		}
 		ItemFrame itemFrame = event.getItemFrame();
-		if (!itemFrame.isVisible()) {
-			BlockFace blockFace = itemFrame.getAttachedFace();
-			Block block = event.getItemFrame().getLocation().getWorld().getBlockAt(event.getItemFrame().getLocation()).getRelative(blockFace);
-			if (block.getState() instanceof Lidded lidded) {
-				Player player = event.getPlayer();
-				if (lidded instanceof EnderChest) {
-					player.openInventory(player.getEnderChest());
-					event.setCancelled(true);
-				} else if (lidded instanceof Container container) {
-					player.openInventory(container.getInventory());
-					event.setCancelled(true);
-				}
-			} else if (block.getState() instanceof Container container){
-				event.getPlayer().openInventory(container.getInventory());
+		BlockFace blockFace = itemFrame.getAttachedFace();
+		Block block = event.getItemFrame().getLocation().getWorld().getBlockAt(event.getItemFrame().getLocation()).getRelative(blockFace);
+		if (block.getState() instanceof Lidded lidded) {
+			Player player = event.getPlayer();
+			if (lidded instanceof EnderChest) {
+				player.openInventory(player.getEnderChest());
+				event.setCancelled(true);
+			} else if (lidded instanceof Container container) {
+				player.openInventory(container.getInventory());
 				event.setCancelled(true);
 			}
+		} else if (block.getState() instanceof Container container) {
+			event.getPlayer().openInventory(container.getInventory());
+			event.setCancelled(true);
 		}
 	}
 }

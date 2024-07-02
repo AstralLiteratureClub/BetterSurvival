@@ -6,8 +6,11 @@ import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.PrepareAnvilEvent;
+import org.bukkit.event.inventory.SmithItemEvent;
 import org.bukkit.inventory.AnvilInventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.SmithingInventory;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.Contract;
 
 public class ColoredAnvilNameListener implements Listener {
@@ -32,6 +35,20 @@ public class ColoredAnvilNameListener implements Listener {
 				meta.displayName(LegacyComponentSerializer.legacyAmpersand().deserialize(anvilInventory.getRenameText()).decoration(TextDecoration.ITALIC, false));
 			});
 			event.setResult(result);
+		}
+	}
+	@EventHandler
+	public void onSmith(SmithItemEvent event){
+		ItemStack itemStack = event.getCurrentItem();
+		if (itemStack == null){
+			return;
+		}
+		SmithingInventory inventory = event.getInventory();
+		if (inventory.getInputEquipment() != null) {
+			ItemMeta meta = inventory.getInputEquipment().getItemMeta();
+			if (meta.hasDisplayName()) {
+				itemStack.editMeta(m -> m.displayName(m.displayName()));
+			}
 		}
 	}
 }
